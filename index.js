@@ -30,5 +30,14 @@ var env = createEnv('views', {
     }
 });
 
-var s = env.render('hello.html', { name: '<script>alert("小明")</script>' });
+var s = env.render('hello.html', { 
+    name: 'nunjucks',
+    fruits: ['苹果','香蕉','橙子'],
+    count: 12000 
+});
 console.log(s);
+
+console.log(env.render('extend.html', {
+    header: 'my header',
+    body: 'my body'
+}));
