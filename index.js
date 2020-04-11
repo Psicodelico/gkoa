@@ -7,6 +7,9 @@ const app = new Koa();
 
 const controller = require('./controller');
 const staticFiles = require('./static-files');
+const templating = require('./templating');
+
+const isProduction = process.env.NODE_ENV === 'production';
 
 // log request URL:
 app.use(async (ctx, next) => {
@@ -20,6 +23,11 @@ app.use(bodyParser());
 app.use(controller());
 
 app.use(staticFiles('/static/', __dirname + '/static'));
+
+app.use(templating('views', {
+    noCache: !isProduction,
+    watch: !isProduction
+}));
 
 app.use(async (ctx, next) => {
     ctx.render('index.html', {
