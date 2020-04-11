@@ -37,11 +37,5 @@ app.use(templating('views', {
 // 处理路由:
 app.use(controller());
 
-app.use(async (ctx, next) => {
-    ctx.render('index.html', {
-        title: 'Welcome'
-    });
-})
-
 app.listen(3000);
 console.log('app started at port 3000...');
