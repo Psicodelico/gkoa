@@ -7,7 +7,7 @@ module.exports = {
             console.log('signin ok!');
             ctx.render('signin-ok.html', {
                 title: 'Sign In OK',
-                name: 'Mr Node'
+                name: 'Mr Koa'
             });
         } else {
             console.log('signin failed!');
