@@ -4,7 +4,9 @@ const router = require('koa-router')();
 const bodyParser = require('koa-bodyparser');
 
 const app = new Koa();
+
 const controller = require('./controller');
+const staticFiles = require('./static-files');
 
 // log request URL:
 app.use(async (ctx, next) => {
@@ -16,6 +18,14 @@ app.use(bodyParser());
 
 // add router middleware:
 app.use(controller());
+
+app.use(staticFiles('/static/', __dirname + '/static'));
+
+app.use(async (ctx, next) => {
+    ctx.render('index.html', {
+        title: 'Welcome'
+    });
+})
 
 app.listen(3000);
 console.log('app started at port 3000...');
